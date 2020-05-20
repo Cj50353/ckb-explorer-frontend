@@ -73,6 +73,8 @@
       "new_dao_depositor": "每日新增锁定地址",
       "new_dao_withdraw": "每日新增解锁",
       "circulation_ratio": "锁定量占当前流通量比率",
+      "circulation_supply_title": "流通总量",
+      "circulation_supply": "流通总量 (CKB)",
       "live_cell": "未花费 Cell",
       "archived_cell": "已花费 Cell",
       "all_cells": "所有的 Cell",

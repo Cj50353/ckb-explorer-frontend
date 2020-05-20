@@ -3,6 +3,7 @@ import {
   fetchStatisticNewDaoDeposit,
   fetchStatisticNewDaoWithdraw,
   fetchStatisticCirculationRatio,
+  fetchStatisticCirculationSupply,
 } from '../../http/fetcher'
 import { AppDispatch } from '../../../contexts/reducer'
 import { PageActions } from '../../../contexts/actions'
@@ -87,6 +88,27 @@ export const getStatisticCirculationRatio = (dispatch: AppDispatch) => {
         type: PageActions.UpdateStatisticCirculationRatio,
         payload: {
           statisticCirculationRatios,
+        },
+      })
+    },
+  )
+}
+
+export const getStatisticCirculationSupply = (dispatch: AppDispatch) => {
+  fetchStatisticCirculationSupply().then(
+    (response: Response.Response<Response.Wrapper<State.StatisticCirculationSupply>[]> | null) => {
+      if (!response) return
+      const { data } = response
+      const statisticCirculationSupply = data.map(wrapper => {
+        return {
+          circulatingSupply: wrapper.attributes.circulatingSupply,
+          createdAtUnixtimestamp: wrapper.attributes.createdAtUnixtimestamp,
+        }
+      })
+      dispatch({
+        type: PageActions.UpdateStatisticCirculationSupply,
+        payload: {
+          statisticCirculationSupply,
         },
       })
     },

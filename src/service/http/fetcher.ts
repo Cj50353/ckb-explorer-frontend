@@ -207,6 +207,12 @@ export const fetchStatisticCirculationRatio = () => {
   )
 }
 
+export const fetchStatisticCirculationSupply = () => {
+  return axiosIns(`/daily_statistics/circulating_supply`).then((res: AxiosResponse) =>
+    toCamelcase<Response.Response<Response.Wrapper<State.StatisticCirculationSupply>[]>>(res.data),
+  )
+}
+
 export const fetchStatisticDifficultyHashRate = () => {
   return axiosIns(`/epoch_statistics/difficulty-hash_rate`).then((res: AxiosResponse) =>
     toCamelcase<Response.Response<Response.Wrapper<State.StatisticDifficultyHashRate>[]>>(res.data),

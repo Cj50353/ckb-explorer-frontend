@@ -21,6 +21,7 @@ import {
   getStatisticTotalDaoDeposit,
   getStatisticNewDaoDeposit,
   getStatisticCirculationRatio,
+  getStatisticCirculationSupply,
 } from '../../service/app/charts/nervosDao'
 import { useAppState, useDispatch } from '../../contexts/providers'
 import i18n from '../../utils/i18n'
@@ -47,6 +48,7 @@ import { EpochTimeDistributionChart, initStatisticEpochTimeDistribution } from '
 import { NewDaoDepositChart, initStatisticNewDaoDeposit } from './nervosDao/NewDaoDeposit'
 import { CirculationRatioChart, initStatisticCirculationRatio } from './nervosDao/CirculationRatio'
 import { initStatisticAverageBlockTimes, AverageBlockTimeChart } from './block/AverageBlockTime'
+import { CirculationSupplyChart, initStatisticCirculationSupply } from './nervosDao/CirculationSupply'
 
 interface ChartData {
   title: string
@@ -85,6 +87,7 @@ export default () => {
     statisticNewDaoDeposits,
     // statisticNewDaoWithdraw,
     statisticCirculationRatios,
+    statisticCirculationSupply,
     statisticCellCounts,
     statisticTransactionCounts,
     statisticAddressBalanceRanks,
@@ -222,6 +225,11 @@ export default () => {
           chart: <CirculationRatioChart statisticCirculationRatios={statisticCirculationRatios} isThumbnail />,
           path: '/charts/circulation-ratio',
         },
+        {
+          title: `${i18n.t('statistic.circulation_supply_title')}`,
+          chart: <CirculationSupplyChart statisticCirculationSupply={statisticCirculationSupply} isThumbnail />,
+          path: '/charts/circulation-supply',
+        },
       ],
     },
     // {
@@ -254,6 +262,7 @@ export default () => {
     initStatisticNewDaoDeposit(dispatch)
     // initStatisticNewDaoWithdraw(dispatch)
     initStatisticCirculationRatio(dispatch)
+    initStatisticCirculationSupply(dispatch)
     initStatisticAddressBalanceRanks(dispatch)
     initStatisticBalanceDistribution(dispatch)
     initStatisticTxFeeHistory(dispatch)
@@ -278,6 +287,7 @@ export default () => {
     getStatisticNewDaoDeposit(dispatch)
     // getStatisticNewDaoWithdraw(dispatch)
     getStatisticCirculationRatio(dispatch)
+    getStatisticCirculationSupply(dispatch)
     getStatisticAddressBalanceRank(dispatch)
     getStatisticBalanceDistribution(dispatch)
     getStatisticTxFeeHistory(dispatch)

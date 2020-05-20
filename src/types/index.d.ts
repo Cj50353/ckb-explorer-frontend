@@ -353,6 +353,11 @@ declare namespace State {
     }[]
   }
 
+  export interface StatisticCirculationSupply {
+    circulatingSupply: string
+    createdAtUnixtimestamp: string
+  }
+
   interface FetchStatusValue {
     OK: string
     Error: string
@@ -431,6 +436,7 @@ declare namespace State {
     statisticCirculationRatios: StatisticCirculationRatio[]
     statisticNewNodeCounts: StatisticNewNodeCount[]
     statisticNodeDistributions: StatisticNodeDistribution[]
+    statisticCirculationSupply: StatisticCirculationSupply[]
   }
 
   export interface PageState extends StatisticChartsState {

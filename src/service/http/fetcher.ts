@@ -207,9 +207,9 @@ export const fetchStatisticCirculationRatio = () => {
   )
 }
 
-export const fetchStatisticCirculationSupply = () => {
+export const fetchStatisticCirculatingSupply = () => {
   return axiosIns(`/daily_statistics/circulating_supply`).then((res: AxiosResponse) =>
-    toCamelcase<Response.Response<Response.Wrapper<State.StatisticCirculationSupply>[]>>(res.data),
+    toCamelcase<Response.Response<Response.Wrapper<State.StatisticCirculatingSupply>[]>>(res.data),
   )
 }
 

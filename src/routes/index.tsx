@@ -39,7 +39,7 @@ import TxFeeHistoryChart from '../pages/StatisticsChart/activities/TxFeeHistory'
 import BlockTimeDistributionChart from '../pages/StatisticsChart/block/BlockTimeDistribution'
 import EpochTimeDistributionChart from '../pages/StatisticsChart/block/EpochTimeDistribution'
 import AverageBlockTimeChart from '../pages/StatisticsChart/block/AverageBlockTime'
-import CirculationSupplyChart from '../pages/StatisticsChart/nervosDao/CirculationSupply'
+import CirculatingSupplyChart from '../pages/StatisticsChart/nervosDao/CirculatingSupply'
 
 const hasSearch = (pathname: string) => {
   return pathname !== '/search/fail' && pathname !== '/maintain'
@@ -227,10 +227,10 @@ const Containers: CustomRouter.Route[] = [
   //   comp: NodeDistributionChart,
   // },
   {
-    name: 'CirculationSupplyChart',
-    path: '/charts/circulation-supply',
+    name: 'CirculatingSupplyChart',
+    path: '/charts/circulating-supply',
     exact: true,
-    comp: CirculationSupplyChart,
+    comp: CirculatingSupplyChart,
   },
   {
     name: 'SearchFail',

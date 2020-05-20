@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useAppState, useDispatch } from '../../../contexts/providers'
 import i18n, { currentLanguage } from '../../../utils/i18n'
-import { getStatisticCirculationSupply } from '../../../service/app/charts/nervosDao'
+import { getStatisticCirculatingSupply } from '../../../service/app/charts/nervosDao'
 import { parseDateNoTime } from '../../../utils/date'
 import { isMobile } from '../../../utils/screen'
 import { ChartColors } from '../../../utils/const'
@@ -25,7 +25,7 @@ const grid = {
   containLabel: true,
 }
 
-const getOption = (statisticCirculationSupply: State.StatisticCirculationSupply[], isThumbnail = false) => {
+const getOption = (statisticCirculatingSupply: State.StatisticCirculatingSupply[], isThumbnail = false) => {
   return {
     color: ChartColors,
     tooltip: !isThumbnail && {
@@ -39,7 +39,7 @@ const getOption = (statisticCirculationSupply: State.StatisticCirculationSupply[
           dataList[0].name,
         )}</div>`
         if (dataList[0].data) {
-          result += `<div>${colorSpan(ChartColors[0])}${widthSpan(i18n.t('statistic.circulation_supply'))} ${handleAxis(
+          result += `<div>${colorSpan(ChartColors[0])}${widthSpan(i18n.t('statistic.circulating_supply'))} ${handleAxis(
             dataList[0].data,
             2,
           )}</div>`
@@ -55,7 +55,7 @@ const getOption = (statisticCirculationSupply: State.StatisticCirculationSupply[
         nameGap: '30',
         type: 'category',
         boundaryGap: false,
-        data: statisticCirculationSupply.map(data => data.createdAtUnixtimestamp),
+        data: statisticCirculatingSupply.map(data => data.createdAtUnixtimestamp),
         axisLabel: {
           formatter: (value: string) => parseDateNoTime(value),
         },
@@ -64,7 +64,7 @@ const getOption = (statisticCirculationSupply: State.StatisticCirculationSupply[
     yAxis: [
       {
         position: 'left',
-        name: isMobile() || isThumbnail ? '' : i18n.t('statistic.circulation_supply'),
+        name: isMobile() || isThumbnail ? '' : i18n.t('statistic.circulating_supply'),
         nameTextStyle: {
           align: 'left',
         },
@@ -82,51 +82,51 @@ const getOption = (statisticCirculationSupply: State.StatisticCirculationSupply[
     ],
     series: [
       {
-        name: i18n.t('statistic.circulation_supply'),
+        name: i18n.t('statistic.circulating_supply'),
         type: 'line',
         yAxisIndex: '0',
         symbol: isThumbnail ? 'none' : 'circle',
         symbolSize: 3,
-        data: statisticCirculationSupply.map(data => new BigNumber(data.circulatingSupply).toFixed(0)),
+        data: statisticCirculatingSupply.map(data => new BigNumber(data.circulatingSupply).toFixed(0)),
       },
     ],
   }
 }
 
-export const CirculationSupplyChart = ({
-  statisticCirculationSupply,
+export const CirculatingSupplyChart = ({
+  statisticCirculatingSupply,
   isThumbnail = false,
 }: {
-  statisticCirculationSupply: State.StatisticCirculationSupply[]
+  statisticCirculatingSupply: State.StatisticCirculatingSupply[]
   isThumbnail?: boolean
 }) => {
-  if (!statisticCirculationSupply || statisticCirculationSupply.length === 0) {
-    return <ChartLoading show={statisticCirculationSupply === undefined} isThumbnail={isThumbnail} />
+  if (!statisticCirculatingSupply || statisticCirculatingSupply.length === 0) {
+    return <ChartLoading show={statisticCirculatingSupply === undefined} isThumbnail={isThumbnail} />
   }
-  return <ReactChartCore option={getOption(statisticCirculationSupply, isThumbnail)} isThumbnail={isThumbnail} />
+  return <ReactChartCore option={getOption(statisticCirculatingSupply, isThumbnail)} isThumbnail={isThumbnail} />
 }
 
-export const initStatisticCirculationSupply = (dispatch: AppDispatch) => {
+export const initStatisticCirculatingSupply = (dispatch: AppDispatch) => {
   dispatch({
-    type: PageActions.UpdateStatisticCirculationSupply,
+    type: PageActions.UpdateStatisticCirculatingSupply,
     payload: {
-      statisticCirculationSupply: undefined,
+      statisticCirculatingSupply: undefined,
     },
   })
 }
 
 export default () => {
   const dispatch = useDispatch()
-  const { statisticCirculationSupply } = useAppState()
+  const { statisticCirculatingSupply } = useAppState()
 
   useEffect(() => {
-    initStatisticCirculationSupply(dispatch)
-    getStatisticCirculationSupply(dispatch)
+    initStatisticCirculatingSupply(dispatch)
+    getStatisticCirculatingSupply(dispatch)
   }, [dispatch])
 
   return (
-    <ChartPage title={i18n.t('statistic.circulation_supply_title')}>
-      <CirculationSupplyChart statisticCirculationSupply={statisticCirculationSupply} />
+    <ChartPage title={i18n.t('statistic.circulating_supply_title')}>
+      <CirculatingSupplyChart statisticCirculatingSupply={statisticCirculatingSupply} />
     </ChartPage>
   )
 }

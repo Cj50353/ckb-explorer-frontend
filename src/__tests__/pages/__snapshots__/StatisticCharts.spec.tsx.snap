@@ -627,13 +627,13 @@ exports[`Active Page shallow renders with empty data 1`] = `
           className="sc-fzoyTs bDXNzP"
         >
           <a
-            href="/charts/circulation-supply"
+            href="/charts/circulating-supply"
             onClick={[Function]}
           >
             <div
               className="chart__card_title"
             >
-              Circulation Supply
+              Circulating Supply
             </div>
             <div
               className="chart__card_body"

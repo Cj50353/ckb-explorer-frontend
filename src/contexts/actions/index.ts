@@ -57,7 +57,7 @@ export enum PageActions {
   UpdateStatisticEpochLengthDistribution = 'updateStatisticEpochLengthDistribution',
   UpdateStatisticNewNodeCount = 'updateStatisticNewNodeCount',
   UpdateStatisticNodeDistribution = 'updateStatisticNodeDistribution',
-  UpdateStatisticCirculationSupply = 'updateStatisticCirculationSupply',
+  UpdateStatisticCirculatingSupply = 'updateStatisticCirculatingSupply',
 
   UpdateNervosDao = 'updateNervosDao',
   UpdateNervosDaoTransactions = 'updateNervosDaoTransactions',

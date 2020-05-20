@@ -21,7 +21,7 @@ import {
   getStatisticTotalDaoDeposit,
   getStatisticNewDaoDeposit,
   getStatisticCirculationRatio,
-  getStatisticCirculationSupply,
+  getStatisticCirculatingSupply,
 } from '../../service/app/charts/nervosDao'
 import { useAppState, useDispatch } from '../../contexts/providers'
 import i18n from '../../utils/i18n'
@@ -48,7 +48,7 @@ import { EpochTimeDistributionChart, initStatisticEpochTimeDistribution } from '
 import { NewDaoDepositChart, initStatisticNewDaoDeposit } from './nervosDao/NewDaoDeposit'
 import { CirculationRatioChart, initStatisticCirculationRatio } from './nervosDao/CirculationRatio'
 import { initStatisticAverageBlockTimes, AverageBlockTimeChart } from './block/AverageBlockTime'
-import { CirculationSupplyChart, initStatisticCirculationSupply } from './nervosDao/CirculationSupply'
+import { CirculatingSupplyChart, initStatisticCirculatingSupply } from './nervosDao/CirculatingSupply'
 
 interface ChartData {
   title: string
@@ -87,7 +87,7 @@ export default () => {
     statisticNewDaoDeposits,
     // statisticNewDaoWithdraw,
     statisticCirculationRatios,
-    statisticCirculationSupply,
+    statisticCirculatingSupply,
     statisticCellCounts,
     statisticTransactionCounts,
     statisticAddressBalanceRanks,
@@ -226,9 +226,9 @@ export default () => {
           path: '/charts/circulation-ratio',
         },
         {
-          title: `${i18n.t('statistic.circulation_supply_title')}`,
-          chart: <CirculationSupplyChart statisticCirculationSupply={statisticCirculationSupply} isThumbnail />,
-          path: '/charts/circulation-supply',
+          title: `${i18n.t('statistic.circulating_supply_title')}`,
+          chart: <CirculatingSupplyChart statisticCirculatingSupply={statisticCirculatingSupply} isThumbnail />,
+          path: '/charts/circulating-supply',
         },
       ],
     },
@@ -262,7 +262,7 @@ export default () => {
     initStatisticNewDaoDeposit(dispatch)
     // initStatisticNewDaoWithdraw(dispatch)
     initStatisticCirculationRatio(dispatch)
-    initStatisticCirculationSupply(dispatch)
+    initStatisticCirculatingSupply(dispatch)
     initStatisticAddressBalanceRanks(dispatch)
     initStatisticBalanceDistribution(dispatch)
     initStatisticTxFeeHistory(dispatch)
@@ -287,7 +287,7 @@ export default () => {
     getStatisticNewDaoDeposit(dispatch)
     // getStatisticNewDaoWithdraw(dispatch)
     getStatisticCirculationRatio(dispatch)
-    getStatisticCirculationSupply(dispatch)
+    getStatisticCirculatingSupply(dispatch)
     getStatisticAddressBalanceRank(dispatch)
     getStatisticBalanceDistribution(dispatch)
     getStatisticTxFeeHistory(dispatch)

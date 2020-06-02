@@ -85,7 +85,7 @@ const getOption = (
         symbolSize: (value: number[]) => {
           if (value[2] < 5) return 8
           else if (value[2] < 10) return 15
-          else return value[2] * 1.5
+          else return 15 + value[2] / 10
         },
         encode: {
           value: 2,

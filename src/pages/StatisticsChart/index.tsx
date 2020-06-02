@@ -64,6 +64,8 @@ import { SecondaryIssuanceChart, initStatisticSecondaryIssuance } from './moneta
 import { InflationRateChart, initStatisticInflationRate } from './monetary/InflationRate'
 import { LiquidityChart, initStatisticLiquidity } from './monetary/Liquidity'
 import { MinerAddressDistributionChart, initStatisticMinerAddressDistribution } from './mining/MinerAddressDistribution'
+import { NodeDistributionChart, initStatisticNodeDistribution } from './network/NodeDistribution'
+import { getStatisticNodeDistribution } from '../../service/app/charts/network'
 
 interface ChartData {
   title: string
@@ -115,6 +117,7 @@ export default () => {
     statisticSecondaryIssuance,
     statisticInflationRates,
     statisticLiquidity,
+    statisticNodeDistributions,
   } = useAppState()
 
   const charts: ChartCategory[] = [
@@ -239,6 +242,16 @@ export default () => {
       ],
     },
     {
+      category: i18n.t('statistic.category_network'),
+      charts: [
+        {
+          title: `${i18n.t('statistic.node_distribution')}`,
+          chart: <NodeDistributionChart statisticNodeDistributions={statisticNodeDistributions} isThumbnail />,
+          path: '/charts/node-distribution',
+        },
+      ],
+    },
+    {
       category: i18n.t('statistic.category_monetary'),
       charts: [
         {
@@ -299,6 +312,7 @@ export default () => {
     initStatisticSecondaryIssuance(dispatch)
     initStatisticInflationRate(dispatch)
     initStatisticLiquidity(dispatch)
+    initStatisticNodeDistribution(dispatch)
   }, [dispatch])
 
   useEffect(() => {
@@ -325,6 +339,7 @@ export default () => {
     getStatisticSecondaryIssuance(dispatch)
     getStatisticInflationRate(dispatch)
     getStatisticLiquidity(dispatch)
+    getStatisticNodeDistribution(dispatch)
   }, [dispatch])
 
   return (

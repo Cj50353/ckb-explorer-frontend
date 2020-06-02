@@ -99,7 +99,7 @@ const getOption = (
           borderColor: '#228159',
           borderWidth: 0.5,
           color: '#3CC68A',
-          capacity: 0.6,
+          opacity: 0.6,
         },
         emphasis: {
           label: {
